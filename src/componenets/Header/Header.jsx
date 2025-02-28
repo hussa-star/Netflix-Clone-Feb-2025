@@ -31,7 +31,7 @@ function Header() {
     <>
       <div
         className={`${styles["header-wrapper"]} ${
-          show ? styles["header_black"] : ""
+          show || menuOpen ? styles["header_black"] : ""
         }`}
       >
         <div className={styles["left-header"]}>
