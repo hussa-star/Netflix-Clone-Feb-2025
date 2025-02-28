@@ -56,12 +56,45 @@
 
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    display: none; /* Hide by default */
   }
+
+  .show-nav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: black;
+    padding: 10px 0;
+  }
+
+  .show-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .show-nav ul li {
+    padding: 10px;
+  }
+
   .right-header ul {
     display: none;
   }
+
   .menu-icon {
     display: block;
+  }
+
+  .hide-icons {
+    display: none;
+  }
+
+  .show-icons {
+    display: flex;
   }
 }

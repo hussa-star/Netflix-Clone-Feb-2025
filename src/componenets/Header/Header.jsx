@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -7,9 +7,9 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import logo from "../../assets/images/Netflix_Logo_PMS.png";
 import MenuIcon from "@mui/icons-material/Menu";
 
-
 function Header() {
   const [show, setShow] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // Toggle menu state
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +26,7 @@ function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <>
       <div
@@ -37,13 +38,17 @@ function Header() {
           <div className={styles["netflix-logo"]}>
             <img src={logo} alt="netflix-logo" />
           </div>
-          <div className={styles["nav-links"]}>
+          <div
+            className={`${styles["nav-links"]} ${
+              menuOpen ? styles["show-nav"] : ""
+            }`}
+          >
             <ul>
               <li>
                 <a href="#">Home</a>
               </li>
               <li>
-                <a href="#">TVShows</a>
+                <a href="#">TV Shows</a>
               </li>
               <li>
                 <a href="#">Movies</a>
@@ -52,16 +57,18 @@ function Header() {
                 <a href="#">Latests</a>
               </li>
               <li>
-                <a href="#">Mylists</a>
+                <a href="#">My Lists</a>
               </li>
               <li>
-                <a href="#">Brouse by Language</a>
+                <a href="#">Browse by Language</a>
               </li>
             </ul>
           </div>
         </div>
         <div className={styles["right-header"]}>
-          <ul>
+          <ul
+            className={!menuOpen ? styles["show-icons"] : styles["hide-icons"]}
+          >
             <li>
               <SearchIcon />
             </li>
@@ -75,7 +82,10 @@ function Header() {
               <ArrowDropDownIcon />
             </li>
           </ul>
-          <div className={styles["menu-icon"]}>
+          <div
+            className={styles["menu-icon"]}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             <MenuIcon />
           </div>
         </div>
